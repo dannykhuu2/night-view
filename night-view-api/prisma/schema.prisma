@@ -33,7 +33,6 @@ model Image {
 
   title String
   url String
-  likes Int
   
   copyright String?
   explanation String?
