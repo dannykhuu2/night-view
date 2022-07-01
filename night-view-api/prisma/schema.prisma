@@ -17,10 +17,11 @@ model User {
 
   email String @unique
   hash String
-  likedImages Int[]
 
   firstName String?
   lastName String?
+
+  images Image[]
 
   @@map("users")
 }
@@ -37,6 +38,9 @@ model Image {
   copyright String?
   explanation String?
   hdurl String?
+
+  userId Int
+  user User @relation(fields: [userId], references: [id])
 
   @@map("images")
 }
