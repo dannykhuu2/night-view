@@ -21,7 +21,7 @@ model User {
   firstName String?
   lastName String?
 
-  images Image[]
+  likedImages Image[]
 
   @@map("users")
 }
@@ -40,7 +40,7 @@ model Image {
   hdurl String?
 
   userId Int
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("images")
 }
