@@ -4,13 +4,13 @@ import { JwtGuard } from 'src/auth/guard';
 import { LikeImageDto } from './dto';
 import { ImageService } from './image.service';
 
-@UseGuards(JwtGuard)
+//@UseGuards(JwtGuard)
 @Controller('images')
 export class ImageController {
     constructor(private imageService: ImageService) {}
 
-    @Get()
-    getImages(count: number) {
+    @Get(':count')
+    getImages(@Param('count', ParseIntPipe) count: number) {
         return this.imageService.getImages(count);
     }
     

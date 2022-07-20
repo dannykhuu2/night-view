@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { LikeImageDto } from './dto';
 import { Image } from '@prisma/client';
 import { HttpService } from '@nestjs/axios';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { AxiosResponse } from 'axios';
 import { PrismaService } from 'src/prisma/prisma.service';
 
@@ -12,9 +12,12 @@ export class ImageService {
     constructor(private config: ConfigService, private readonly httpService: HttpService,
         private prisma: PrismaService) {}
 
-    getImages(count: number): Observable<AxiosResponse<Image[]>> {
+    getImages(count: number) {
         const api_key = this.config.get('API_KEY');
-        return this.httpService.get(`https://api.nasa.gov/planetary/apod?count=${count}&api_key=${api_key}`)
+        return this.httpService.get(`https://api.nasa.gov/planetary/apod?count=${count}&api_key=${api_key}`).pipe(
+            map(response => response.data),
+        );
+
     }
     
     getLikedImages(userId: number) {
