@@ -1,8 +1,6 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
-export const fetchImages = async (count: number) => {
-    const response = axios.get(`http://localhost:3333/images/${count}`)
-      .then((response) => {
-          console.log(response);
-      });
+export const fetchImages = async (count: number) : Promise<AxiosResponse<any, any>>=> {
+    const response = axios.get(`http://localhost:3333/images/${count}`);
+    return response;
 }
