@@ -1,14 +1,21 @@
-import React, { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import axios from 'axios';
 import { fetchImages } from "../services/ImageService";
+import ImageContainer from "./ImageContainer";
 
 const HomePage = () => {
+  let images: any;
+
+  const retrieveImages: any = async() => {
+    images = fetchImages(3).then((res: any) => {
+      return res.data;
+    })
+  }
   
   useEffect(() => {
-    fetchImages(3);
+    retrieveImages();
   });
 
   return (
@@ -22,6 +29,13 @@ const HomePage = () => {
           </Nav>
         </Container>
       </Navbar>
+      <div>
+        { 
+          images?.map((image: any) => (
+            <ImageContainer images={image}></ImageContainer>
+          ))
+        }
+      </div>
     </>
   );
 }
