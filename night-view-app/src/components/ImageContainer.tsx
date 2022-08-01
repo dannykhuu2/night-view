@@ -1,9 +1,28 @@
 import Image from 'react-bootstrap/Image';
+import Button from 'react-bootstrap/Button';
+import { useState } from 'react';
+import { saveLikedImage } from '../services/ImageService';
+import likedImage from '../services/types';
 
 const ImageContainer = ({ images } : any) => {
+
+    const [liked, toggleLike] = useState(false);
+    
+    const likeImage = () => {
+        const likedImage : likedImage = {
+            title: images.title,
+            url: images.url,
+            copyright: images.copyright,
+            explanation: images.explanation,
+            hdurl: images.hdurl
+        };
+        toggleLike(!liked);
+        console.log(likedImage);
+        saveLikedImage(12, likedImage);
+    }
+
     return (    
         <div className="card-container">
-            <img src={images.url}></img>
             <Image src={images.url} rounded={true} />
             <div className="information">
                 <div className="row">
@@ -17,6 +36,7 @@ const ImageContainer = ({ images } : any) => {
                     </p>
                 </div>  
             </div>
+            <Button variant="primary" onClick={() => likeImage()}>Like</Button>{' '}
         </div>
     )
 }
