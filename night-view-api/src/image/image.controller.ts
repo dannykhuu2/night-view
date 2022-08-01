@@ -24,7 +24,7 @@ export class ImageController {
         return this.imageService.getLikedImagesById(userId, imageId);
     }
 
-    @Post()
+    @Post(':id')
     likeImage(@GetUser('id') userId: number, @Body() dto: LikeImageDto) {
         return this.imageService.likeImage(userId, dto);
     }
