@@ -1,6 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
 import likedImage, { API_GATEWAY_URL } from './types';
-import types from './types';
 
 const API_GET_IMAGES = (count: number) => `${API_GATEWAY_URL}/images/${count}`;
 const API_POST_LIKED_IMAGES = (userId: number) => `${API_GATEWAY_URL}/images/${userId}`;
