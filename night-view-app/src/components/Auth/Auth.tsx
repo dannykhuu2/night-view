@@ -44,7 +44,6 @@ const Auth = ({ isSignin } : AuthProps) => {
               Sign in
             </span>
           </Form.Text>
-
           <Form.Group className="mt-3 mb-3" controlId="formGroupFirstName">
             <Form.Label>First Name</Form.Label>
             <Form.Control type="text" placeholder="Enter first name" />
