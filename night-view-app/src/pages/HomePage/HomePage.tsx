@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchImages } from "../../services/ImageService";
-import ImageContainer from "../ImageContainer/ImageContainer";
+import ImageContainer from "../../components/ImageContainer/ImageContainer";
 
 const HomePage = () => {
   const [images, setImages] = useState([]);

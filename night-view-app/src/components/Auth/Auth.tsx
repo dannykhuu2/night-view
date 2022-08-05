@@ -9,61 +9,51 @@ interface AuthProps {
 const Auth = ({ isSignin } : AuthProps) => {
 
     const [showSignin, setSignin] = useState(isSignin);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-    if (showSignin) {
-      return (
-        <Form className="auth-form">
-          <h3 className="auth-form-title">Sign In</h3>
-          <Form.Text>
-            Not registered yet?{" "}
-            <span className="link-primary" onClick={() => setSignin(false)}>
-              Sign up
-            </span>
-          </Form.Text>
-          <Form.Group className="mt-3 mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-      );
+    const changeSignin = () => {
+      setSignin(showSignin ? false : true)
+    }
+
+    const handleSubmit = (e: React.SyntheticEvent) => {
+      const payload = {
+
+      }
     }
 
     return (
       <Form className="auth-form">
-          <h3 className="auth-form-title">Sign Up</h3>
-          <Form.Text>
-            Already registered?{" "}
-            <span className="link-primary" onClick={() => setSignin(true)}>
-              Sign in
-            </span>
-          </Form.Text>
-          <Form.Group className="mt-3 mb-3" controlId="formGroupFirstName">
-            <Form.Label>First Name</Form.Label>
-            <Form.Control type="text" placeholder="Enter first name" />
-          </Form.Group>
-          <Form.Group className="mt-3 mb-3" controlId="formGroupLastName">
-            <Form.Label>Last Name</Form.Label>
-            <Form.Control type="text" placeholder="Enter last name" />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formGroupEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formGroupPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
+        <h3 className="auth-form-title">
+          {showSignin
+            ? "Sign in"
+            : "Sign up"
+          }
+        </h3>
+        <Form.Text>
+          {showSignin
+            ? `Not Registered yet?${" "}`
+            : `Already registered?${" "}`
+          }
+          <span className="link-primary" onClick={() => changeSignin()}>
+            {showSignin
+              ? "Sign in"
+              : "Sign up"
+            }
+          </span>
+        </Form.Text>
+        <Form.Group className="mt-3 mb-3" controlId="formBasicEmail">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" onChange={(e) => setEmail(e.target.value)}/>
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
     );
 }
 
