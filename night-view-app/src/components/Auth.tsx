@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 import "./Auth.css"
 
 interface AuthProps {
@@ -9,89 +10,62 @@ const Auth = ({ isSignin } : AuthProps) => {
 
     const [showSignin, setSignin] = useState(isSignin);
 
-    if (showSignin === true) {
-        return (
-          <div className="Auth-form-container">
-            <form className="Auth-form">
-              <div className="Auth-form-content">
-                <h3 className="Auth-form-title">Sign In</h3>
-                <div className="text-center">
-                  Not registered yet?{" "}
-                  <span className="link-primary" onClick={() => setSignin(false)}>
-                    Sign Up
-                  </span>
-                </div>
-                <div className="form-group mt-3">
-                  <label>Email address</label>
-                  <input
-                    type="email"
-                    className="form-control mt-1"
-                    placeholder="Enter email"
-                  />
-                </div>
-                <div className="form-group mt-3">
-                  <label>Password</label>
-                  <input
-                    type="password"
-                    className="form-control mt-1"
-                    placeholder="Enter password"
-                  />
-                </div>
-                <div className="d-grid gap-2 mt-3">
-                  <button type="submit" className="btn btn-primary">
-                    Submit
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        )
-      }
-    
+    if (showSignin) {
       return (
-        <div className="Auth-form-container">
-          <form className="Auth-form">
-            <div className="Auth-form-content">
-              <h3 className="Auth-form-title">Sign Up</h3>
-              <div className="text-center">
-                Already registered?{" "}
-                <span className="link-primary" onClick={() => setSignin(true)}>
-                  Sign In
-                </span>
-              </div>
-              <div className="form-group mt-3">
-                <label>Full Name</label>
-                <input
-                  type="email"
-                  className="form-control mt-1"
-                  placeholder="e.g Jane Doe"
-                />
-              </div>
-              <div className="form-group mt-3">
-                <label>Email address</label>
-                <input
-                  type="email"
-                  className="form-control mt-1"
-                  placeholder="Email Address"
-                />
-              </div>
-              <div className="form-group mt-3">
-                <label>Password</label>
-                <input
-                  type="password"
-                  className="form-control mt-1"
-                  placeholder="Password"
-                />
-              </div>
-              <div className="d-grid gap-2 mt-3">
-                <button type="submit" className="btn btn-primary">
-                  Submit
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      )
+        <Form className="auth-form">
+          <h3 className="auth-form-title">Sign In</h3>
+          <Form.Text>
+            Not registered yet?{" "}
+            <span className="link-primary" onClick={() => setSignin(false)}>
+              Sign up
+            </span>
+          </Form.Text>
+          <Form.Group className="mt-3 mb-3" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+      );
+    }
+
+    return (
+      <Form className="auth-form">
+          <h3 className="auth-form-title">Sign Up</h3>
+          <Form.Text>
+            Already registered?{" "}
+            <span className="link-primary" onClick={() => setSignin(true)}>
+              Sign in
+            </span>
+          </Form.Text>
+
+          <Form.Group className="mt-3 mb-3" controlId="formGroupFirstName">
+            <Form.Label>First Name</Form.Label>
+            <Form.Control type="text" placeholder="Enter first name" />
+          </Form.Group>
+          <Form.Group className="mt-3 mb-3" controlId="formGroupLastName">
+            <Form.Label>Last Name</Form.Label>
+            <Form.Control type="text" placeholder="Enter last name" />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formGroupEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formGroupPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+    );
 }
 
 export default Auth;

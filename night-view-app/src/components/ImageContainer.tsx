@@ -24,9 +24,9 @@ const ImageContainer = ({ images } : any) => {
     return (    
         <div className="card-container">
             <Image src={images.url} rounded={true} />
-            <div className="information">
+            <div className="information-content">
                 <div className="row">
-                    <p className="description-header col-12">
+                    <p className="description-title col-12">
                         {images.title} - {images.date}
                     </p>
                 </div>
