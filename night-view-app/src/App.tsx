@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/auth" element={<Auth isSignin={true}/>} />
+          <Route path="/auth" element={<Auth showSignIn={true}/>} />
         </Routes>
       </BrowserRouter>
     </>

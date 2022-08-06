@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import likedImage, { API_GATEWAY_URL } from './types';
+import { LikedImage, API_GATEWAY_URL } from './types';
 
 const API_GET_IMAGES = (count: number) => `${API_GATEWAY_URL}/images/${count}`;
 const API_POST_LIKED_IMAGES = (userId: number) => `${API_GATEWAY_URL}/images/${userId}`;
@@ -9,7 +9,7 @@ export const fetchImages = async (count: number) : Promise<AxiosResponse<any, an
     return response;
 }
 
-export const saveLikedImage = async (userId: number, payload: likedImage) => {
+export const saveLikedImage = async (userId: number, payload: LikedImage) => {
     const response = axios.post(API_POST_LIKED_IMAGES(userId), {
         ...payload
     });
