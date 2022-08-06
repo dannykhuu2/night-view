@@ -1,44 +1,71 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { postSignIn, postSignUp } from "../../services/AuthService";
+import { AuthUser } from "../../services/types"
+import { useNavigate } from "react-router-dom";
 import "./Auth.css"
 
 interface AuthProps {
-    isSignin: boolean;
+    showSignIn: boolean;
 }
 
-const Auth = ({ isSignin } : AuthProps) => {
+const Auth = ({ showSignIn } : AuthProps) => {
 
-    const [showSignin, setSignin] = useState(isSignin);
+    const [isSignIn, setSignin] = useState(showSignIn);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const changeSignin = () => {
-      setSignin(showSignin ? false : true)
+      setSignin(showSignIn ? false : true)
     }
 
-    const handleSubmit = (e: React.SyntheticEvent) => {
-      const payload = {
+    const navigate = useNavigate();
 
+    const navigateHome = () => {
+      navigate("/");
+    }
+
+    const handleSubmit = (e : React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const payload : AuthUser = {
+        email,
+        password
+      }
+
+      try {
+        if (isSignIn) {
+          postSignIn(payload).then((res: any) => {
+            console.log(res.data);
+            navigateHome();
+          });
+        } else {
+          postSignUp(payload).then((res: any) => {
+            console.log(res.data);
+            navigateHome();
+          });
+        }
+      } catch (error) {
+        console.log(error);
       }
     }
 
     return (
-      <Form className="auth-form">
+      <Form className="auth-form" onSubmit={(e) => handleSubmit(e)}>
         <h3 className="auth-form-title">
-          {showSignin
+          {isSignIn
             ? "Sign in"
             : "Sign up"
           }
         </h3>
         <Form.Text>
-          {showSignin
+          {isSignIn
             ? `Not Registered yet?${" "}`
             : `Already registered?${" "}`
           }
           <span className="link-primary" onClick={() => changeSignin()}>
-            {showSignin
-              ? "Sign in"
-              : "Sign up"
+            {isSignIn
+              ? "Sign up"
+              : "Sign in"
             }
           </span>
         </Form.Text>
