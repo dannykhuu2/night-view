@@ -4,7 +4,7 @@ import { JwtGuard } from 'src/auth/guard';
 import { LikeImageDto } from './dto';
 import { ImageService } from './image.service';
 
-//@UseGuards(JwtGuard)
+@UseGuards(JwtGuard)
 @Controller('images')
 export class ImageController {
     constructor(private imageService: ImageService) {}
