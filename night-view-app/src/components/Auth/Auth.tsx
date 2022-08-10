@@ -3,7 +3,7 @@ import { Button, Form } from "react-bootstrap";
 import { postSignIn, postSignUp } from "../../services/AuthService";
 import { AuthUser } from "../../services/types"
 import { useNavigate } from "react-router-dom";
-import "./Auth.css"
+import "./Auth.css";
 
 interface AuthProps {
     showSignIn: boolean;
@@ -35,12 +35,10 @@ const Auth = ({ showSignIn } : AuthProps) => {
       try {
         if (isSignIn) {
           postSignIn(payload).then((res: any) => {
-            console.log(res.data);
             navigateHome();
           });
         } else {
           postSignUp(payload).then((res: any) => {
-            console.log(res.data);
             navigateHome();
           });
         }

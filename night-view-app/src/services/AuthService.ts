@@ -7,15 +7,13 @@ const API_POST_SIGNIN = `${API_GATEWAY_URL}/auth/signin`;
 export const postSignIn = async (payload: AuthUser) : Promise<AxiosResponse<any, any>> => {
     const response = axios.post(API_POST_SIGNIN, {
         ...payload
-    });
-    console.log(response);
+    }, {withCredentials: true});
     return response;
 }
 
 export const postSignUp = async (payload: AuthUser) : Promise<AxiosResponse<any, any>> => {
     const response = axios.post(API_POST_SIGNUP, {
         ...payload
-    });
-    console.log(response);
+    }, {withCredentials: true});
     return response;
 }
