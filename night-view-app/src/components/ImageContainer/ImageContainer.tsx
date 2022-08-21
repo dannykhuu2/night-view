@@ -1,7 +1,7 @@
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
-import { saveLikedImage } from '../../services/ImageService';
+import { saveLikedImage } from '../../services/imageService';
 import { LikedImage } from '../../services/types';
 
 const ImageContainer = ({ images } : any) => {

@@ -1,10 +1,8 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { LikeImageDto } from './dto';
-import { Image } from '@prisma/client';
 import { HttpService } from '@nestjs/axios';
-import { map, Observable } from 'rxjs';
-import { AxiosResponse } from 'axios';
+import { map } from 'rxjs';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()

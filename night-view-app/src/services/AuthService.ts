@@ -1,19 +1,19 @@
 import { AuthUser, API_GATEWAY_URL } from './types'
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 
 const API_POST_SIGNUP = `${API_GATEWAY_URL}/auth/signup`;
 const API_POST_SIGNIN = `${API_GATEWAY_URL}/auth/signin`;
 
-export const postSignIn = async (payload: AuthUser) : Promise<AxiosResponse<any, any>> => {
-    const response = axios.post(API_POST_SIGNIN, {
+export const postSignIn = async (payload: AuthUser) => {
+    const response = await axios.post(API_POST_SIGNIN, {
         ...payload
     }, {withCredentials: true});
-    return response;
+    return response.data;
 }
 
-export const postSignUp = async (payload: AuthUser) : Promise<AxiosResponse<any, any>> => {
-    const response = axios.post(API_POST_SIGNUP, {
+export const postSignUp = async (payload: AuthUser) => {
+    const response = await axios.post(API_POST_SIGNUP, {
         ...payload
     }, {withCredentials: true});
-    return response;
+    return response.data;
 }

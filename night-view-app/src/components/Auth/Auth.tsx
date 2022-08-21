@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { postSignIn, postSignUp } from "../../services/AuthService";
+import { postSignIn, postSignUp } from "../../services/authService";
 import { AuthUser } from "../../services/types"
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";

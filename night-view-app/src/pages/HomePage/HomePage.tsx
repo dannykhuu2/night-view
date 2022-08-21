@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
-import { fetchImages } from "../../services/ImageService";
+import { fetchImages } from "../../services/imageService";
 import ImageContainer from "../../components/ImageContainer/ImageContainer";
 
 const HomePage = () => {
   const [images, setImages] = useState([]);
 
-  const retrieveImages = async() => {
-    fetchImages(3).then((res: any) => {
-      setImages(res.data);
-    })
-  }
-  
   useEffect(() => {
-    retrieveImages();
+    fetchImages(3).then((res) => {
+      setImages(res);
+    });
   }, []);
 
   return (
