@@ -14,13 +14,13 @@ export class ImageController {
         return this.imageService.getImages(count);
     }
     
-    @Get()
+    @Get(':id')
     getLikedImages(@GetUser('id') userId: number) {
         return this.imageService.getLikedImages(userId);
     }
 
-    @Get(':id')
-    getLikedImagesById(@GetUser('id') userId: number, @Param('id', ParseIntPipe) imageId: number) {
+    @Get(':id/:id2')
+    getLikedImagesById(@GetUser('id') userId: number, @Param('id2', ParseIntPipe) imageId: number) {
         return this.imageService.getLikedImagesById(userId, imageId);
     }
 
