@@ -4,10 +4,10 @@ const Header = () => {
     return (
         <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">Night View</Navbar.Brand>
+          <Navbar.Brand href="/">Night View</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Liked Images</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/likes">Liked Images</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
