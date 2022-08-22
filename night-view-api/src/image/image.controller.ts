@@ -9,12 +9,12 @@ import { ImageService } from './image.service';
 export class ImageController {
     constructor(private imageService: ImageService) {}
 
-    @Get(':count')
+    @Get('/api/:count')
     getImages(@Param('count', ParseIntPipe) count: number) {
         return this.imageService.getImages(count);
     }
     
-    @Get(':id')
+    @Get('/likes/:id')
     getLikedImages(@GetUser('id') userId: number) {
         return this.imageService.getLikedImages(userId);
     }
