@@ -2,14 +2,14 @@ import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 import { saveLikedImage } from '../../services/imageService';
-import { LikedImage } from '../../services/types';
+import { AddLikedImage, LikedImage } from '../../services/types';
 
 const ImageContainer = ({ images } : any) => {
 
     const [liked, toggleLike] = useState(false);
     
     const likeImage = () => {
-        const likedImage : LikedImage = {
+        const likedImage : AddLikedImage = {
             title: images.title,
             url: images.url,
             copyright: images.copyright,

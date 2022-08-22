@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ImageContainer from "../../components/ImageContainer/ImageContainer";
 import { fetchLikedImages } from "../../services/imageService";
+import { LikedImage } from "../../services/types";
 import { getUser } from "../../services/userService";
 
 const LikesPage = () => {
@@ -18,8 +19,8 @@ const LikesPage = () => {
         <>
         <div>
           { 
-            likedImages.map((image: any) => (
-              <ImageContainer images={image} key={image.url} />
+            likedImages.map((image: LikedImage) => (
+              <ImageContainer images={image} key={image.id} />
             ))
           }
         </div>
