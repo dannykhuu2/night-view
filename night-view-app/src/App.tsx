@@ -8,11 +8,12 @@ import LikesPage from './pages/HomePage/LikesPage';
 function App() {
   return (
     <>
-      <Header></Header>
       <BrowserRouter>
+      <Header></Header>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/likes" element={<LikesPage />} />
+          <Route path="/" element={<Header />} />
+            <Route index element={<HomePage />} />
+            <Route path="/likes" element={<LikesPage />} />
           <Route path="/auth" element={<Auth showSignIn={true}/>} />
         </Routes>
       </BrowserRouter>
