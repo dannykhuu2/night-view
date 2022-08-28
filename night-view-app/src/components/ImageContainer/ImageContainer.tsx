@@ -1,42 +1,65 @@
 import Image from 'react-bootstrap/Image';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
-import { saveLikedImage } from '../../services/imageService';
-import { AddLikedImage, LikedImage } from '../../services/types';
+import { postLikeImage, postUnlikeImageWithUrl, postUnlikeImageWithId } from '../../services/imageService';
+import { ImageType, LikedImage } from '../../services/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppState } from '../../store/types';
 
-const ImageContainer = ({ images } : any) => {
+interface ImageProps {
+    image: any,
+    page: string
+}
 
-    const [liked, toggleLike] = useState(false);
+const ImageContainer = ({ image, page } : ImageProps) => {
+
+    const [liked, toggleLike] = useState(page === "likes" ? true : false);
+
+    const dispatch = useDispatch();
+    //const userSelector = useSelector((state: AppState) => state.auth.user);
     
-    const likeImage = () => {
-        const likedImage : AddLikedImage = {
-            title: images.title,
-            url: images.url,
-            copyright: images.copyright,
-            explanation: images.explanation,
-            hdurl: images.hdurl
+    const handleLikeClick = async () => {
+        const likedImage : ImageType = {
+            title: image.title,
+            url: image.url,
+            copyright: image.copyright,
+            explanation: image.explanation
         };
+
+        if (!liked) {
+            await postLikeImage(likedImage);
+        } else {
+            if (page === "home") {
+                console.log("home");
+                console.log(image.url);
+                await postUnlikeImageWithUrl(image.url)
+            } else if (page === "likes") {
+                console.log("likes");
+                console.log(image.id);
+                await postUnlikeImageWithId(image.id);
+            }
+        }
         toggleLike(!liked);
-        console.log(likedImage);
-        saveLikedImage(12, likedImage);
     }
 
     return (    
         <div className="card-container">
-            <Image src={images.url} rounded={true} />
+            <Image src={image.url} rounded={true} />
             <div className="information-content">
                 <div className="row">
                     <p className="description-title col-12">
-                        {images.title} - {images.date}
+                        {image.title} - {image.date}
                     </p>
                 </div>
                 <div className="row">
                     <p className="description-body">
-                        {images.explanation}
+                        {image.explanation}
                     </p>
                 </div>  
             </div>
-            <Button variant="primary" onClick={() => likeImage()}>Like</Button>{' '}
+            <Button variant="primary" onClick={() => handleLikeClick()}>
+                { liked ? "Unlike" : "Like" }
+            </Button>{' '}
         </div>
     )
 }
