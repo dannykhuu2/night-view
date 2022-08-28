@@ -16,8 +16,4 @@ export class LikeImageDto {
     @IsString()
     @IsNotEmpty()
     explanation: string
-
-    @IsString()
-    @IsNotEmpty()
-    hdurl: string
 }

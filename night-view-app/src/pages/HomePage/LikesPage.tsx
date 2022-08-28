@@ -1,26 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ImageContainer from "../../components/ImageContainer/ImageContainer";
-import { fetchLikedImages } from "../../services/imageService";
 import { LikedImage } from "../../services/types";
-import { getUser } from "../../services/userService";
+import { useDispatch, useSelector } from 'react-redux';
+import { setLikedImagesAction } from "../../components/ImageContainer/store/imageSlice";
+import { AppState } from "../../store/types";
 
 const LikesPage = () => {
-    const [likedImages, setLikedImages] = useState([]);
+    const dispatch = useDispatch();
+    const likedImagesSelector = useSelector((state: AppState) => state.images.likedImages);
 
     useEffect(() => {
-        getUser().then((user) => {
-            fetchLikedImages(user.id).then((res) => {
-                setLikedImages(res);
-            });
-        });
+      dispatch(setLikedImagesAction({userId: 12}));
     }, []);
 
     return (
         <>
         <div>
           { 
-            likedImages.map((image: LikedImage) => (
-              <ImageContainer images={image} key={image.id} />
+            likedImagesSelector.likes.map((image: LikedImage) => (
+              <ImageContainer image={image} page="likes" key={image.id} />
             ))
           }
         </div>

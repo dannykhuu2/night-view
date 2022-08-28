@@ -4,6 +4,8 @@ import { postSignIn, postSignUp } from "../../services/authService";
 import { AuthUser } from "../../services/types"
 import { useNavigate } from "react-router-dom";
 import "./Auth.css";
+import { useDispatch } from "react-redux";
+import { setUserAction } from "./store/authSlice";
 
 interface AuthProps {
     showSignIn: boolean;
@@ -14,6 +16,8 @@ const Auth = ({ showSignIn } : AuthProps) => {
     const [isSignIn, setSignin] = useState(showSignIn);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const dispatch = useDispatch();
 
     const changeSignin = () => {
       setSignin(showSignIn ? false : true)
@@ -35,10 +39,12 @@ const Auth = ({ showSignIn } : AuthProps) => {
       try {
         if (isSignIn) {
           postSignIn(payload).then((res: any) => {
+            dispatch(setUserAction());
             navigateHome();
           });
         } else {
           postSignUp(payload).then((res: any) => {
+            dispatch(setUserAction());
             navigateHome();
           });
         }
