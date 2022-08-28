@@ -1,4 +1,0 @@
--- AlterTable
-ALTER TABLE "Image" ALTER COLUMN "copyright" DROP NOT NULL,
-ALTER COLUMN "explanation" DROP NOT NULL,
-ALTER COLUMN "hdurl" DROP NOT NULL;
