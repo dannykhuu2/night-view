@@ -63,4 +63,24 @@ export class ImageService {
             }
         })
     }
+
+    async deleteLikedImageByUrl(userId: number, encodedUrl: string) {
+        const url = decodeURIComponent(encodedUrl);
+        const likedImage = await this.prisma.image.findFirst({
+            where: {
+                url,
+                userId
+            }
+        });
+
+        if (!likedImage || likedImage.userId !== userId) {
+            throw new ForbiddenException('Permissions to delete resources denied');
+        }
+
+        await this.prisma.image.delete({
+            where: {
+                id: likedImage.id
+            }
+        })
+    }
 }
