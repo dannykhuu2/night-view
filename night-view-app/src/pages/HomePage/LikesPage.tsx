@@ -10,7 +10,7 @@ const LikesPage = () => {
     const likedImagesSelector = useSelector((state: AppState) => state.images.likedImages);
 
     useEffect(() => {
-      dispatch(setLikedImagesAction({userId: 12}));
+      dispatch(setLikedImagesAction());
     }, []);
 
     return (

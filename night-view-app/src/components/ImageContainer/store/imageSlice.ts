@@ -27,7 +27,7 @@ const slice = createSlice({
     name: 'images',
     initialState,
     reducers: {
-        setLikedImagesAction: (_state, { payload }: PayloadAction<{userId: number}>) => {},
+        setLikedImagesAction: (_state) => {},
         setLikedImagesSuccessAction: (state, { payload }: PayloadAction<Array<LikedImageType>>) => {
             state.likedImages.likes = payload;
         },

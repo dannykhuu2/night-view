@@ -2,9 +2,9 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { fetchImages, fetchLikedImages } from '../../../services/imageService';
 import * as actions from './imageSlice';
 
-function* setLikedImagesSaga({ payload }: ReturnType<typeof actions.setLikedImagesAction>): any {
+function* setLikedImagesSaga(): any {
     try {
-        const res = yield call(fetchLikedImages, payload.userId);
+        const res = yield call(fetchLikedImages);
         yield put(actions.setLikedImagesSuccessAction(res));
     } catch (error) {
         yield put(actions.setLikedImagesFailAction(error));
