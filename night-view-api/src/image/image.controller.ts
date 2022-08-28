@@ -14,25 +14,30 @@ export class ImageController {
         return this.imageService.getImages(count);
     }
     
-    @Get('/likes/:id')
+    @Get('/likes')
     getLikedImages(@GetUser('id') userId: number) {
         return this.imageService.getLikedImages(userId);
     }
 
-    @Get(':id/:id2')
-    getLikedImagesById(@GetUser('id') userId: number, @Param('id2', ParseIntPipe) imageId: number) {
+    @Get(':id')
+    getLikedImagesById(@GetUser('id') userId: number, @Param('id', ParseIntPipe) imageId: number) {
         return this.imageService.getLikedImagesById(userId, imageId);
     }
 
-    @Post(':id')
+    @Post()
     likeImage(@GetUser('id') userId: number, @Body() dto: LikeImageDto) {
         return this.imageService.likeImage(userId, dto);
     }
 
-    @Delete(':id')
+    @Delete('/byId/:id')
     deleteLikedImageById(@GetUser('id') userId: number, @Param('id', ParseIntPipe) imageId: number) {
+        console.log("here");
         return this.imageService.deleteLikedImageById(userId, imageId);
     }
 
+    @Delete('/byUrl/:encodedUrl')
+    deleteLikedImageByUrl(@GetUser('id') userId: number, @Param('encodedUrl') encodedUrl: string) {
+        return this.imageService.deleteLikedImageByUrl(userId, encodedUrl);
+    }
 
 }
