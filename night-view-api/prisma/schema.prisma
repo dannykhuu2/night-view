@@ -33,7 +33,6 @@ model Image {
   
   copyright String?
   explanation String?
-  hdurl String?
 
   userId Int
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
