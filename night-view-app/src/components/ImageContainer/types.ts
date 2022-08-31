@@ -5,6 +5,7 @@ export interface LikedImageType extends ImageType {
 export interface ImageType {
     title: string
     url: string
-    copyright: string
+    copyright?: string
     explanation: string
+    date: string
 }

@@ -10,6 +10,10 @@ export class LikeImageDto {
     url: string
 
     @IsString()
+    @IsNotEmpty()
+    date: string
+
+    @IsString()
     @IsOptional()
     copyright?: string
 

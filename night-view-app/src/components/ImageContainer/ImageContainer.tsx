@@ -5,6 +5,7 @@ import { postLikeImage, postUnlikeImageWithUrl, postUnlikeImageWithId } from '..
 import { ImageType, LikedImage } from '../../services/types';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../store/types';
+import { removeLikedImageAction } from './store/imageSlice';
 
 interface ImageProps {
     image: any,
@@ -23,20 +24,17 @@ const ImageContainer = ({ image, page } : ImageProps) => {
             title: image.title,
             url: image.url,
             copyright: image.copyright,
-            explanation: image.explanation
+            explanation: image.explanation,
+            date: image.date
         };
 
         if (!liked) {
             await postLikeImage(likedImage);
         } else {
             if (page === "home") {
-                console.log("home");
-                console.log(image.url);
                 await postUnlikeImageWithUrl(image.url)
             } else if (page === "likes") {
-                console.log("likes");
-                console.log(image.id);
-                await postUnlikeImageWithId(image.id);
+                dispatch(removeLikedImageAction({imageId: image.id}));
             }
         }
         toggleLike(!liked);

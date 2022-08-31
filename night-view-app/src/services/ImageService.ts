@@ -29,6 +29,5 @@ export const postUnlikeImageWithId = async (imageId: number) => {
 
 export const postUnlikeImageWithUrl = async (url: string) => {
     const encodedUrl = encodeURIComponent(url)
-    console.log(encodedUrl);
     const response = axios.delete(API_DELETE_UNLIKE_IMAGE_URL(encodedUrl), { withCredentials: true });
 }

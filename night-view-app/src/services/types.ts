@@ -5,8 +5,9 @@ export interface LikedImage extends ImageType {
 export interface ImageType {
     title: string
     url: string
-    copyright: string
+    copyright?: string
     explanation: string
+    date: string
 }
 
 export interface AuthUserDetailed extends AuthUser{

@@ -34,7 +34,6 @@ export class ImageController {
     @UseGuards(JwtGuard)
     @Delete('/byId/:id')
     deleteLikedImageById(@GetUser('id') userId: number, @Param('id', ParseIntPipe) imageId: number) {
-        console.log("here");
         return this.imageService.deleteLikedImageById(userId, imageId);
     }
 
