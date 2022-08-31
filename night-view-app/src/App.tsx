@@ -14,7 +14,8 @@ function App() {
           <Route path="/" element={<Header />} />
             <Route index element={<HomePage />} />
             <Route path="/likes" element={<LikesPage />} />
-          <Route path="/auth" element={<Auth showSignIn={true}/>} />
+          <Route path="/auth/signin" element={<Auth showSignIn={true} />} />
+          <Route path="/auth/signup" element={<Auth showSignIn={false} />} />
         </Routes>
       </BrowserRouter>
     </>
