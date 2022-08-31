@@ -6,11 +6,18 @@ import { ImageType } from "../../services/types";
 const HomePage = () => {
   const [images, setImages] = useState<Array<ImageType>>([]);
 
-  useEffect(() => {
-    fetchImages(3).then((res) => {
-      setImages(res);
+  const handleFetchImages = async (count: number) => {
+    fetchImages(count).then((res) => {
+      const data = res.map((image: any) => {
+        const { service_version, media_type, hdurl, ...temp} = image;
+        return temp;
+      });
+      setImages(data);
     });
-    
+  }
+
+  useEffect(() => {
+    handleFetchImages(3);
   }, []);
 
   return (
