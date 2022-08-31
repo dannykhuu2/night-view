@@ -3,18 +3,15 @@ import { UserType } from "./types";
 
 export interface AuthAppState {
     user: {
-        id: number | null,
+        id: number,
         email: string 
-        error: any
-    }
+    } | null,
+    error: any
 }
 
 const initialState: AuthAppState = {
-    user: {
-        id: null,
-        email: "",
-        error: null
-    }
+    user: null,
+    error: null
 }
 
 const slice = createSlice({
@@ -23,11 +20,13 @@ const slice = createSlice({
     reducers: {
         setUserAction : (_state ) => {},
         setUserSuccessAction: (state, { payload }: PayloadAction<UserType>) => {
-            state.user.id = payload.id;
-            state.user.email = payload.email;
+            state.user = {
+                id: payload.id,
+                email: payload.email
+            }
         },
         setUserFailAction: (state, { payload }: PayloadAction<any>) => {
-            state.user.error = payload;
+            state.error = payload;
         }
     }
 })
