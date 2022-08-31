@@ -40,17 +40,22 @@ const slice = createSlice({
         },
         setAllImagesFailAction: (state, { payload }: PayloadAction<any>) => {
             state.allImages.error = payload;
-        }
-        // removeLikedImage: (state, { payload }: PayloadAction<number>) => {
-        //     state.filter(image => image.id !== payload)
-        // },
-        // addLikedImage: (state, { payload }: PayloadAction<ImageType[]>) => {
-        //     [...state, payload]
+        },
+        removeLikedImageAction: (_state, { payload }: PayloadAction<{imageId: number}>) => {},
+        removeLikedImageSuccessAction: (state, { payload }: PayloadAction<number>) => {
+            state.likedImages.likes = state.likedImages.likes.filter(image => image.id !== payload)
+        },
+        removeLikedImageFailAction: (state, { payload }: PayloadAction<any>) => {
+            state.likedImages.error = payload;
+        },
+        // addLikedImage: (state, { payload }: PayloadAction<LikedImageType>) => {
+        //     state.likedImages.likes = [...state.likedImages.likes, payload];
         // } 
     },
     extraReducers: {}
 })
 
 export const { setLikedImagesAction, setLikedImagesSuccessAction, setLikedImagesFailAction,
-    setAllImagesAction, setAllImagesSuccessAction, setAllImagesFailAction } = slice.actions;
+    setAllImagesAction, setAllImagesSuccessAction, setAllImagesFailAction, removeLikedImageAction,
+    removeLikedImageSuccessAction, removeLikedImageFailAction } = slice.actions;
 export default slice.reducer;
