@@ -16,9 +16,9 @@ CREATE TABLE "images" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "title" TEXT NOT NULL,
     "url" TEXT NOT NULL,
+    "date" TEXT NOT NULL,
+    "explanation" TEXT NOT NULL,
     "copyright" TEXT,
-    "explanation" TEXT,
-    "hdurl" TEXT,
     "userId" INTEGER NOT NULL,
 
     CONSTRAINT "images_pkey" PRIMARY KEY ("id")
