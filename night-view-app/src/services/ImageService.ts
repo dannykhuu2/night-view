@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from '../custom-axios';
 import { LikedImage, API_GATEWAY_URL, ImageType} from './types';
 
 const API_GET_IMAGES = (count: number) => `${API_GATEWAY_URL}/images/api/${count}`;
