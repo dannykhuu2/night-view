@@ -11,7 +11,7 @@ export class AuthController{
     async signup(@Body() dto: AuthDto, @Res({ passthrough: true}) response: Response) {
         const access_token = await this.authService.signUp(dto);
         response.cookie("access_token", access_token, {
-            expires: new Date(Date.now() + 1800000),
+            expires: new Date(Date.now() + 10800000),
             httpOnly: true
         });
         response.send();
@@ -22,7 +22,7 @@ export class AuthController{
     async signin(@Body() dto: AuthDto, @Res({ passthrough: true}) response: Response) {
         const access_token = await this.authService.signIn(dto);
         response.cookie("access_token", access_token, {
-            expires: new Date(Date.now() + 1800000),
+            expires: new Date(Date.now() + 10800000),
             httpOnly: true
         });
         response.send();
