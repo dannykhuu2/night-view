@@ -2,7 +2,7 @@ import saga from "redux-saga";
 import { all, fork } from 'redux-saga/effects'
 import { configureStore } from "@reduxjs/toolkit";
 import { imagesSaga } from "../components/ImageContainer/store/imageSaga";
-import { rootReducer } from "./reducers";
+import rootReducer from "./reducers";
 import persistStore from "redux-persist/es/persistStore";
 import { authSaga } from "../components/Auth/store/authSaga";
 
@@ -24,5 +24,3 @@ export const store = configureStore({
 
 sagaMiddleware.run(RootSaga);
 export const persistor = persistStore(store);
-
-export type RootState = ReturnType<typeof store.getState>

@@ -27,9 +27,10 @@ const slice = createSlice({
         },
         setUserFailAction: (state, { payload }: PayloadAction<any>) => {
             state.error = payload;
-        }
+        },
+        logout: () => {}
     }
 })
 
-export const { setUserAction, setUserSuccessAction, setUserFailAction } = slice.actions;
+export const { setUserAction, setUserSuccessAction, setUserFailAction, logout } = slice.actions;
 export default slice.reducer;
