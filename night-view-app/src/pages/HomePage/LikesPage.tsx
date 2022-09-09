@@ -14,14 +14,21 @@ const LikesPage = () => {
     }, []);
 
     return (
-        <>
-        <div>
-          { 
-            likedImagesSelector.likes.map((image: LikedImage) => (
-              <ImageContainer image={image} page="likes" key={image.id} />
-            ))
-          }
-        </div>
+      <>
+        {likedImagesSelector.likes.length > 0
+          ? 
+            <div>
+            { 
+              likedImagesSelector.likes.map((image: LikedImage) => (
+                <ImageContainer image={image} page="likes" key={image.id} />
+              ))
+            }
+            </div>
+          :
+            <div>
+              <h2>You do not have any liked images</h2>
+            </div>
+        }
       </>
     )
 }

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { AppState } from "../../store/types";
 import { logout } from "../Auth/store/authSlice";
+import { logoutAPI} from "../../services/authService";
 
 const Header = () => {
 
@@ -11,6 +12,7 @@ const Header = () => {
 
   const handleLogout = () => {
      dispatch(logout());
+     logoutAPI();
   }
   
   return (
@@ -19,13 +21,15 @@ const Header = () => {
         <Navbar.Brand as={Link} to="/">Night View</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link as={Link} to="/">Home</Nav.Link>
-          <Nav.Link as={Link} to="/likes">Liked Images</Nav.Link>
+          {userSelector.user &&
+            <Nav.Link as={Link} to="/likes">Liked Images</Nav.Link>
+          }
         </Nav>
         {!userSelector.user || userSelector.error
           ?         
           <Nav>
-            <Nav.Link href="/auth/signin">Log in</Nav.Link>
-            <Nav.Link href="/auth/signup">Sign up</Nav.Link>
+            <Nav.Link as={Link} to="/auth/signin">Log in</Nav.Link>
+            <Nav.Link as={Link} to="/auth/signup">Sign up</Nav.Link>
           </Nav>
           :
           <Nav>
