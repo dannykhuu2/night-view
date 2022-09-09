@@ -27,4 +27,12 @@ export class AuthController{
         });
         response.send();
     }
+
+    @HttpCode(HttpStatus.OK)
+    @Post('logout')
+    async logout(@Res() response: Response) {
+        response.clearCookie("access_token");
+        response.send();
+    }
+
 }
