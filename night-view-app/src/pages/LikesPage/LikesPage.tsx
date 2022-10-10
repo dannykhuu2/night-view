@@ -4,7 +4,7 @@ import { LikedImage } from "../../services/types";
 import { useDispatch, useSelector } from 'react-redux';
 import { setLikedImagesAction } from "../../components/ImageContainer/store/imageSlice";
 import { AppState } from "../../store/types";
-import "./LikesPage.css";
+import "../MainPage.css";
 
 const LikesPage = () => {
     const dispatch = useDispatch();

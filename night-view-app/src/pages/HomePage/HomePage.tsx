@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchImages } from "../../services/imageService";
 import ImageContainer from "../../components/ImageContainer/ImageContainer";
 import { ImageType } from "../../services/types";
-import "./HomePage.css";
+import "../MainPage.css";
 
 const HomePage = () => {
   const [images, setImages] = useState<Array<ImageType>>([]);
