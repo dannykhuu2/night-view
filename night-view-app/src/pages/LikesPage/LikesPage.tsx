@@ -4,6 +4,7 @@ import { LikedImage } from "../../services/types";
 import { useDispatch, useSelector } from 'react-redux';
 import { setLikedImagesAction } from "../../components/ImageContainer/store/imageSlice";
 import { AppState } from "../../store/types";
+import "./LikesPage.css";
 
 const LikesPage = () => {
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const LikesPage = () => {
       <>
         {likedImagesSelector.likes.length > 0
           ? 
-            <div>
+            <div className="wrapper">
             { 
               likedImagesSelector.likes.map((image: LikedImage) => (
                 <ImageContainer image={image} page="likes" key={image.id} />
