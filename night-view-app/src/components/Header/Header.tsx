@@ -33,7 +33,7 @@ const Header = () => {
           </Nav>
           :
           <Nav>
-            <Button onClick={() => handleLogout()}>Log out</Button>
+            <Nav.Link onClick={() => handleLogout()}>Log out</Nav.Link>
           </Nav>
         }
       </Container>
