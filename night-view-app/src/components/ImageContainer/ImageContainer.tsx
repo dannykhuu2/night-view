@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { postLikeImage, postUnlikeImageWithUrl, postUnlikeImageWithId } from '../../services/imageService';
 import { ImageType, LikedImage } from '../../services/types';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppState } from '../../store/types';
 import { removeLikedImageAction } from './store/imageSlice';
+import "./ImageContainer.css";
 
 interface ImageProps {
     image: any,
@@ -17,7 +17,6 @@ const ImageContainer = ({ image, page } : ImageProps) => {
     const [liked, toggleLike] = useState(page === "likes" ? true : false);
 
     const dispatch = useDispatch();
-    //const userSelector = useSelector((state: AppState) => state.auth.user);
     
     const handleLikeClick = async () => {
         const likedImage : ImageType = {
@@ -41,23 +40,16 @@ const ImageContainer = ({ image, page } : ImageProps) => {
     }
 
     return (    
-        <div className="card-container">
-            <Image src={image.url} rounded={true} />
-            <div className="information-content">
-                <div className="row">
-                    <p className="description-title col-12">
-                        {image.title} - {image.date}
-                    </p>
-                </div>
-                <div className="row">
-                    <p className="description-body">
-                        {image.explanation}
-                    </p>
-                </div>  
+        <div className="card">
+            <div className="card-body">
+                <Image src={image.url} rounded={true} />
+                <h4 className="card-title">{image.title}</h4>
+                <p className="card-date">{image.date}</p>
+                <p className="card-description">{image.explanation}</p>
             </div>
-            <Button variant="primary" onClick={() => handleLikeClick()}>
-                { liked ? "Unlike" : "Like" }
-            </Button>{' '}
+            <button className="card-btn" onClick={() => handleLikeClick()}>
+                    { liked ? "Unlike" : "Like" }
+            </button>{' '}
         </div>
     )
 }

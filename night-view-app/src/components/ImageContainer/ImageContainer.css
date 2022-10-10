@@ -1,0 +1,62 @@
+.card {
+    margin: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 20px lightgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: transform 200ms ease-in;
+}
+
+.card-body {
+    margin: 0.5em;
+}
+
+img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-title {
+    padding: 0.5rem 0.5rem 0 0.5rem;
+}
+
+.card-description {
+    padding: 0 0.5rem 0 0.5rem;
+}
+
+.card-date {
+    padding: 0 0.5rem 0 0.5rem;
+}
+
+.card-btn {
+    padding: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 1rem;
+    border: 2px solid red;
+    background: transparent;
+    color: red;
+    border-radius: 12px;
+    transition: background 200ms ease-in, color 200ms ease-in;
+}
+
+.card-btn:hover {
+    background-color: red;
+    color: white;
+}
+
+.card:hover {
+    transform: scale(1.01);
+}
+
+.card-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchImages } from "../../services/imageService";
 import ImageContainer from "../../components/ImageContainer/ImageContainer";
 import { ImageType } from "../../services/types";
+import "./HomePage.css";
 
 const HomePage = () => {
   const [images, setImages] = useState<Array<ImageType>>([]);
@@ -17,12 +18,12 @@ const HomePage = () => {
   }
 
   useEffect(() => {
-    handleFetchImages(3);
+    handleFetchImages(10);
   }, []);
 
   return (
       <>
-      <div>
+      <div className="wrapper">
         { 
           images.map((image: any) => (
             <ImageContainer image={image} page="home" key={image.url} />
